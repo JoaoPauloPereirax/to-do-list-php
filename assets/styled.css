@@ -1,0 +1,24 @@
+*{
+       padding: 0;
+       margin: 0;
+}
+
+body{
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+       margin: auto;
+}
+.container{
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+}
+
+form{
+       padding: 10px;
+       border: 2px solid grey;
+       border-radius: 20px;
+}
