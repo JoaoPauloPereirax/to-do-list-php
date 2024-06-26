@@ -50,8 +50,8 @@ require('./config.php');
                             ?>
                      </td>
                      <td>
-                            <a href="editar_action.php?id=<?=$usuario['id'];?>">Editar</a>
-                            <a href="excluir_action.php?id=<?=$usuario['id'];?>">Excluir</a>
+                            <a href="./Pages/editar.php?id=<?=$tarefa['id'];?>">Editar</a>
+                            <a href="excluir_action.php?id=<?=$tarefa['id'];?>">Excluir</a>
                      </td>
               </tr>
               <?php
