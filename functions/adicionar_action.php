@@ -6,10 +6,10 @@ if ($descricao) {
     $insert = $pdo->prepare("INSERT INTO `todolist`.`tarefas` (`descricao`) VALUES (:descricao)");
     $insert->bindValue(':descricao', $descricao);
     $insert->execute();
-    
+    header("Location: ../index.php");
     exit;
 } else {
-    echo "Erro";
+    header("Location: ../index.php");
     exit;
 }
 ?>
