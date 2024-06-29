@@ -12,7 +12,7 @@ require('./config.php');
 <body>
        <div class="container">
               <!-- ADICIONAR -->
-       <form action="./functions/adicionar_action.php" method="POST">
+       <form id="newTask" action="./functions/adicionar_action.php" method="POST">
               Nova Tarefa: <input type="text" name="tarefas" >
               <input type="submit" value="Incluir">
        </form>
@@ -40,22 +40,20 @@ require('./config.php');
                      <td><?= $tarefa["id"]; ?></td>
                      <td><?= $tarefa["descricao"]; ?></td>
                      <td>
-                            <form id="statusForm" action="./functions/status_action.php" method="POST">
-                                   <input type="hidden" name="id" value="<?=$tarefa['id'];?>">
-                                   <input type="hidden" name="status" value="<?=$info['concluida'];?>">
+                                   
                                    <?php
-                                          if($tarefa["concluida"]==1){
+                                          if($tarefa["status"]==1){
                                                  echo "Concluída";
                                           }else{
                                                  echo "Pendente";
                                           }; 
                                    ?>
-                            </form>
                            
                      </td>
                      <td>
+                            <a href="./Pages/updateStatus.php?id=<?=$tarefa['id'];?>">Update Status</a>
                             <a href="./Pages/editar.php?id=<?=$tarefa['id'];?>">Editar</a>
-                            <a href="excluir_action.php?id=<?=$tarefa['id'];?>">Excluir</a>
+                            <a href="./functions/excluir_action.php?id=<?=$tarefa['id'];?>" onclick="return confirm('Você tem certeza que deseja exxluir esta tarefa?')">Excluir</a>
                      </td>
               </tr>
               <?php
