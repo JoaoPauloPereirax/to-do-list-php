@@ -1,29 +1,27 @@
 <?php
 require "../config.php";
-
 $id = filter_input(INPUT_POST, 'id');
 $status = filter_input(INPUT_POST, 'status');
-
-if ($id && $status) {
+if (isset($status) && $id) {
     if($status==1){
         $status = 0;
-        $insert = $pdo->prepare("UPDATE `todolist`.`tarefas` SET `concluida`=`:status` WHERE  `id`=`:id`;");
-        $insert->bindValue(':id', $id);
-        $insert->bindValue(':status', $status);
-        $insert->execute();
+        $sql = $pdo->prepare('UPDATE todolist.tarefas SET status = (:status) WHERE id = (:id)');
+        $sql->bindValue(":status",$status);
+        $sql->bindValue(":id",$id);
+        $sql->execute();
         header("Location: ../index.php");
         exit;
     }else{
         $status = 1;
-        $insert = $pdo->prepare("UPDATE `todolist`.`tarefas` SET `concluida`=`:status` WHERE  `id`=`:id`;");
-        $insert->bindValue(':id', $id);
-        $insert->bindValue(':status', $status);
-        $insert->execute();
+        $sql = $pdo->prepare('UPDATE todolist.tarefas SET status = (:status) WHERE id = (:id)');
+        $sql->bindValue(":status",$status);
+        $sql->bindValue(":id",$id);
+        $sql->execute();
         header("Location: ../index.php");
-        exit; 
+        exit;
     }
 } else {
-    header("Location: ../index.php");
-    exit;
+       header("Location: ../index.php");
+       exit;
 }
 ?>
