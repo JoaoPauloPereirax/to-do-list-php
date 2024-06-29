@@ -16,7 +16,6 @@ require('./config.php');
               Nova Tarefa: <input type="text" name="tarefas" >
               <input type="submit" value="Incluir">
        </form>
-
        <!-- ACESSANDO OS DADOS -->
        <?php
        $sql = $pdo->query("SELECT * FROM `todolist`.`tarefas`;");
@@ -41,13 +40,18 @@ require('./config.php');
                      <td><?= $tarefa["id"]; ?></td>
                      <td><?= $tarefa["descricao"]; ?></td>
                      <td>
-                            <?php
-                                   if($tarefa["concluida"]==1){
-                                          echo "Concluída";
-                                   }else{
-                                          echo "Pendente";
-                                   }; 
-                            ?>
+                            <form id="statusForm" action="./functions/status_action.php" method="POST">
+                                   <input type="hidden" name="id" value="<?=$tarefa['id'];?>">
+                                   <input type="hidden" name="status" value="<?=$info['concluida'];?>">
+                                   <?php
+                                          if($tarefa["concluida"]==1){
+                                                 echo "Concluída";
+                                          }else{
+                                                 echo "Pendente";
+                                          }; 
+                                   ?>
+                            </form>
+                           
                      </td>
                      <td>
                             <a href="./Pages/editar.php?id=<?=$tarefa['id'];?>">Editar</a>
@@ -60,5 +64,6 @@ require('./config.php');
               
        </table>
        </div>
+       <script src="./scripts/main.js"></script>
 </body>
 </html>
