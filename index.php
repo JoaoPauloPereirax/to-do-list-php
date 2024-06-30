@@ -1,5 +1,13 @@
 <?php
 require('./config.php');
+require('./dao/UsuarioDaoMysql.php');
+//acessando os dados
+$usuarioDao = new UsuarioDaoMysql($pdo);
+$lista = $usuarioDao->findAll();
+
+       
+      
+       
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -16,17 +24,6 @@ require('./config.php');
               Nova Tarefa: <input type="text" name="tarefas" >
               <input type="submit" value="Incluir">
        </form>
-       <!-- ACESSANDO OS DADOS -->
-       <?php
-       $sql = $pdo->query("SELECT * FROM `todolist`.`tarefas`;");
-      
-       if($sql->rowCount()>0){
-              $dados = $sql->fetchAll(PDO::FETCH_ASSOC);       
-       }
-       
-      
-       
-       ?>
        <table border="1" width="100%">
               <tr>
                      <th>ID</th>
@@ -35,14 +32,14 @@ require('./config.php');
                      <th>AÇÕES</th>
               </tr>
               <?php
-              foreach($dados as $tarefa):?>
+              foreach($lista as $tarefa):?>
               <tr>
-                     <td><?= $tarefa["id"]; ?></td>
-                     <td><?= $tarefa["descricao"]; ?></td>
+                     <td><?= $tarefa->getId(); ?></td>
+                     <td><?= $tarefa->getDesc(); ?></td>
                      <td>
                                    
                                    <?php
-                                          if($tarefa["status"]==1){
+                                          if($tarefa->getStatus()==1){
                                                  echo "Concluída";
                                           }else{
                                                  echo "Pendente";
@@ -51,9 +48,9 @@ require('./config.php');
                            
                      </td>
                      <td>
-                            <a href="./Pages/updateStatus.php?id=<?=$tarefa['id'];?>">Update Status</a>
-                            <a href="./Pages/editar.php?id=<?=$tarefa['id'];?>">Editar</a>
-                            <a href="./functions/excluir_action.php?id=<?=$tarefa['id'];?>" onclick="return confirm('Você tem certeza que deseja exxluir esta tarefa?')">Excluir</a>
+                            <a href="./Pages/updateStatus.php?id=<?=$tarefa->getId();?>">Update Status</a>
+                            <a href="./Pages/editar.php?id=<?=$tarefa->getId();?>">Editar</a>
+                            <a href="./functions/excluir_action.php?id=<?=$tarefa->getId();?>" onclick="return confirm('Você tem certeza que deseja exxluir esta tarefa?')">Excluir</a>
                      </td>
               </tr>
               <?php
