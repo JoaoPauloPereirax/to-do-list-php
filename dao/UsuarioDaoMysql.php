@@ -12,14 +12,15 @@ require_once 'models/Usuario.php';//esses arquivos serão puxados do index
        }
        public function findAll(){
               $array = [];
-              $sql = $this->pdo->query("SELECT * FROM `todolist`.`tarefas`;");
+              $select_sql = "SELECT * FROM `todolist`.`tarefas`;";
+              $sql = $this->pdo->query($select_sql);
               if($sql->rowCount()>0){
                      $data = $sql->fetchAll();
                      foreach($data as $item){
                             $u = new Usuario();
                             $u->setId($item['id']);
                             $u->setDesc($item['descricao']);
-                            $u->getStatus($item['status']);
+                            $u->setStatus($item['status']);
                             $array[] = $u;
                             
                      }

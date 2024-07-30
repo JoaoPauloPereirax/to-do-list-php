@@ -15,42 +15,45 @@ $lista = $usuarioDao->findAll();
        <meta charset="UTF-8">
        <meta name="viewport" content="width=device-width, initial-scale=1.0">
        <title>To-Do List</title>
-       <link rel="stylesheet" href="./assets/styled.css">
+       <link rel="stylesheet" href="./assets/_cdn/css/main.css">
 </head>
 <body>
        <div class="container">
               <!-- ADICIONAR -->
        <form id="newTask" action="./functions/adicionar_action.php" method="POST">
-              Nova Tarefa: <input type="text" name="tarefas" >
+             VISITANTES: <input type="text" name="tarefas" >
               <input type="submit" value="Incluir">
        </form>
-       <table border="1" width="100%">
+       <table border="1" width="100%">    
               <tr>
-                     <th>ID</th>
                      <th>DESCRIÇÃO</th>
                      <th>STATUS</th>
-                     <th>AÇÕES</th>
+                     <th>AC</th>
               </tr>
               <?php
               foreach($lista as $tarefa):?>
               <tr>
-                     <td><?= $tarefa->getId(); ?></td>
                      <td><?= $tarefa->getDesc(); ?></td>
                      <td>
-                                   
+                            <a id="status" href="./Pages/updateStatus.php?id=<?=$tarefa->getId();?>">
                                    <?php
-                                          if($tarefa->getStatus()==1){
-                                                 echo "Concluída";
+                                          $status_tarefa = $tarefa->getStatus();
+                                          if($status_tarefa==0){
+                                                 echo "Ausente";
                                           }else{
-                                                 echo "Pendente";
+                                                 echo "Presente";
                                           }; 
                                    ?>
-                           
+                            </a>
                      </td>
                      <td>
-                            <a href="./Pages/updateStatus.php?id=<?=$tarefa->getId();?>">Update Status</a>
-                            <a href="./Pages/editar.php?id=<?=$tarefa->getId();?>">Editar</a>
-                            <a href="./functions/excluir_action.php?id=<?=$tarefa->getId();?>" onclick="return confirm('Você tem certeza que deseja exxluir esta tarefa?')">Excluir</a>
+                            
+                            <a class="actions" href="./Pages/editar.php?id=<?=$tarefa->getId();?>">
+                                   <img src="./assets/images/pencil-square.svg" alt="Atualizar">
+                            </a>
+                            <a class="actions" href="./functions/excluir_action.php?id=<?=$tarefa->getId();?>" onclick="return confirm('Você tem certeza que deseja exxluir esta tarefa?')">
+                                   <img src="./assets/images/delete.svg" alt="Delete">
+                            </a>
                      </td>
               </tr>
               <?php
@@ -59,6 +62,6 @@ $lista = $usuarioDao->findAll();
               
        </table>
        </div>
-       <script src="./scripts/main.js"></script>
+      
 </body>
 </html>

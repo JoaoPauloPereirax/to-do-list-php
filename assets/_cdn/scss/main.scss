@@ -3,6 +3,8 @@
        margin: 0;
 }
 
+
+
 body{
        display: flex;
        flex-direction: column;
@@ -15,6 +17,14 @@ body{
        flex-direction: column;
        justify-content: center;
        align-items: center;
+}
+
+#status{
+       text-decoration: none;
+}
+
+.actions{
+       margin: 2em;
 }
 
 #newTask{

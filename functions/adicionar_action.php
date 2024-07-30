@@ -1,5 +1,5 @@
 <?php
-require "../config.php";
+require "../config.php";    
 
 $descricao = filter_input(INPUT_POST, 'tarefas');
 if ($descricao) {
