@@ -1,7 +1,7 @@
 <?php
 // Configurações do banco de dados
 
-$db_host = 'localhost';
+$db_host = 'localhost';//IP do servidor
 $db_name = 'todolist';
 $db_user = 'root';
 $db_pass = '';
