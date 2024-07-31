@@ -5,3 +5,4 @@ Este projeto é um exemplo de CRUD (Create, Read, Update, Delete) implementado e
 - PHP
 - MySQL
 - Extensão PDO do PHP
+- Sass 
